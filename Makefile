@@ -1,2 +1,2 @@
 all:
-	gcc -o test-c util.c cgi.c test-c.c
+	gcc -o test-c util.c viewhandler.c cgi.c test-c.c

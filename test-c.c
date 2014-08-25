@@ -19,6 +19,7 @@ void action_index(char **get_params) {
 
 	printf("<h1>Hello, Equestria!</h1>\n");
 	printf("<h2>This is a CGI script written in C.</h2>\n");
+	printf("<p>Your IP address is %s</p>\n", getenv("REMOTE_ADDR"));
 	printf("<p>Links: <a href='test.c?do=index'>Index</a> | <a href='test.c?do=test'>Test</a></p>\n");
 	printf("<hr>\n");
 	printf("<h3>System Info</h3>");
@@ -40,7 +41,8 @@ void action_index(char **get_params) {
 }
 
 void action_test(char **get_params) {
-	printf("<h1>Test</h1>");
+	//printf("<h1>Test</h1>");
+	handle_view("views/time.html.ec");
 }
 
 const action_s valid_actions[] = {
