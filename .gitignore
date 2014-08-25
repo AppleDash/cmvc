@@ -23,3 +23,6 @@
 *.hex
 
 test-c
+view-tmp.c
+view-tmp
+
