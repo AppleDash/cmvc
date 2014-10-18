@@ -10,7 +10,7 @@ if [ "$?" != "0" ]; then
 	echo -en "$makeres"
 	exit 0
 fi
-output="$(./test-c)"
+output="$(./main)"
 res="$?"
 if [ "$res" != "0" ]; then
 	echo -en "Status: 500\r\n"

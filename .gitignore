@@ -22,7 +22,7 @@
 *.x86_64
 *.hex
 
-test-c
+main
 view-tmp.c
 view-tmp
 
