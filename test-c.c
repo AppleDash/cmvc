@@ -20,7 +20,7 @@ void action_index(char **get_params) {
 	printf("<h1>Hello, Equestria!</h1>\n");
 	printf("<h2>This is a CGI script written in C.</h2>\n");
 	printf("<p>Your IP address is %s</p>\n", getenv("REMOTE_ADDR"));
-	printf("<p>Links: <a href='test.c?do=index'>Index</a> | <a href='test.c?do=test'>Test</a></p>\n");
+	printf("<p>Links: <a href='cmvc.cgi?do=index'>Index</a> | <a href='cmvc.cgi?do=test'>Test</a></p>\n");
 	printf("<hr>\n");
 	printf("<h3>System Info</h3>");
 	printf("PID of this program: %d<br>", getpid());
