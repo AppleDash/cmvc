@@ -3,7 +3,7 @@
 
 #include "util.h"
 
-char **parse_query_string();
+char **parse_query_string(char *input);
 void free_query_string(char **query_string);
 
 #endif

@@ -5,10 +5,10 @@
 
 /* This function is mainly based on black magic.
    I don't even remember how it works.       */
-char **parse_query_string() {
+char **parse_query_string(char *input) {
 	char **get_params = NULL;
 	int get_params_len = 0;
-	char *query_string_raw = getenv("QUERY_STRING");
+	char *query_string_raw = input;//getenv("QUERY_STRING");
 	int state = STATE_IN_KEY;
 	bool have_one_more = false;
 

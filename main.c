@@ -1,5 +1,6 @@
 #include "cgi.h"
 #include "util.h"
+#include "adlib/linkedlist.h"
 
 typedef void action_t(char**);
 
@@ -42,23 +43,35 @@ void action_index(char **get_params) {
 
 void action_test(char **get_params) {
 	//printf("<h1>Test</h1>");
-	handle_view("views/time.html.ec");
+	//handle_view("views/time.html.ec");
+	list *l = list_create();
+	list_append(l, "Test");
+	printf("%p - %p\n", list_find_str(l, "Test"), list_find_str(l, "blah"));
+	list_destroy(l);
+}
+
+void action_form(char **get_params) {
+	printf("<form action='cmvc.cgi?do=index' method='post'><input type='text' name='txt' /><input type='submit'/></form>");
 }
 
 const action_s valid_actions[] = {
 	{ "index", action_index },
 	{ "test", action_test },
+	{ "form", action_form },
 	NULL
 };
 
-const int num_actions = 2;
+const int num_actions = 3;
 
 int main(int argc, char *argv[]) {
 	char *query_string;
 	char **get_params;
+	char **post_params;
 	extern char **environ;
 	char **env;
 	bool action_found;
+	int data_len;
+	char *data;
 
 	/* Headings */
 	printf("<!DOCTYPE html>\n");
@@ -70,8 +83,16 @@ int main(int argc, char *argv[]) {
 	printf("<body>\n");
 	/* End headings */
 
+	if (!strcasecmp(getenv("REQUEST_METHOD"), "POST")) {
+		data_len = atoi(getenv("CONTENT_LENGTH"));
+		data = calloc(1, data_len + 1);
+		fread(data, 1, data_len, stdin);
+		post_params = parse_query_string(data);
+		free(data);
+	}
+
 	/* Body */
-	get_params = parse_query_string();
+	get_params = parse_query_string(getenv("QUERY_STRING"));
 
 	action_found = false;
 	while (*get_params) {
