@@ -158,5 +158,6 @@ void handle_view(char *view_path) {
 			putchar(c);
 		}
 	} while (c != EOF);
-	
+	unlink("view-tmp.c");
+	unlink("view-tmp");	
 }
